@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import { GoogleAuthProvider } from "firebase/auth";
 import auth from "../firebase/firebase.config";
+import toast from "react-hot-toast";
 
 
 const Login = () => {
@@ -24,9 +25,12 @@ const Login = () => {
         popUpGoogle(provider)
             .then(res => {
                 console.log(res)
+                toast.success('Login Successful');
+                navigate(location?.state ? location.state : '/')
             })
             .catch(err => {
                 console.log(err)
+                toast.error(err.message.split("/")[1])
             })
     }
 
@@ -42,9 +46,12 @@ const Login = () => {
         emailLogin(email, password)
             .then(res => {
                 console.log(res)
+                toast.success('Login Successful');
+                navigate(location?.state ? location.state : '/')
             })
             .catch(err => {
                 console.log(err)
+                toast.error(err.message.split("/")[1])
             })
     }
 

@@ -3,6 +3,9 @@ import Root from "../Root/Root";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import Dashboard from "../Layout/Dashboard";
+import Tasks from "../Layout/Tasks";
+import PrivetRoute from "./PrivetRoute";
 
 const router = createBrowserRouter(
     [
@@ -22,6 +25,16 @@ const router = createBrowserRouter(
                     path: '/register',
                     element: <Register />
                 },
+            ]
+        },
+        {
+            path: 'dashboard',
+            element: <PrivetRoute><Dashboard /></PrivetRoute>,
+            children: [
+                {
+                    path: 'dashboard',
+                    element: <Tasks />
+                }
             ]
         }
     ]
